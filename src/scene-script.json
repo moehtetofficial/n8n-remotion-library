@@ -1,0 +1,84 @@
+{
+  "title": "n8n Webhook → OpenAI Demo",
+  "audio_duration": 20,
+  "scenes": [
+    {
+      "start": 0, "end": 4,
+      "type": "intro",
+      "caption": "n8n workflow တစ်ခု ဘယ်လိုဆောက်မလဲ ကြည့်ရအောင်",
+      "caption_mode": "word",
+      "transition": "fade",
+      "kinetic": ["n8n Workflow", "Beginner Guide"],
+      "icons": [
+        { "slug": "webhook", "label": "Webhook", "x": 32, "y": 42 },
+        { "slug": "openai", "label": "OpenAI", "x": 50, "y": 42 },
+        { "slug": "gsheets", "label": "Sheets", "x": 68, "y": 42 }
+      ],
+      "grade": { "vignette": 0.3 }
+    },
+    {
+      "start": 4, "end": 10,
+      "type": "screen_demo",
+      "mockup": "browser",
+      "mockup_title": "n8n.io — My workflow",
+      "caption": "Webhook node ကို canvas ပေါ် ထည့်လိုက်မယ်",
+      "caption_mode": "word",
+      "transition": "slide",
+      "ui": [
+        { "kind": "node", "label": "Webhook", "icon": "webhook", "x": 12, "y": 38, "w": 16, "h": 14, "status": "success", "selected": true },
+        { "kind": "node", "label": "OpenAI", "icon": "openai", "x": 44, "y": 38, "w": 16, "h": 14, "status": "idle" }
+      ],
+      "connections": [
+        { "from": "Webhook", "to": "OpenAI", "animated": true }
+      ],
+      "cursor": [
+        { "x": 20, "y": 45, "dwell": 0.4 },
+        { "x": 52, "y": 45, "click": true, "dwell": 0.6 }
+      ],
+      "camera": [
+        { "at": 0, "zoom": 1, "x": 50, "y": 50 },
+        { "at": 2.5, "zoom": 1.4, "x": 20, "y": 45 },
+        { "at": 5, "zoom": 1, "x": 50, "y": 50 }
+      ],
+      "grade": { "vignette": 0.25 }
+    },
+    {
+      "start": 10, "end": 16,
+      "type": "screen_demo",
+      "mockup": "browser",
+      "mockup_title": "OpenAI — Parameters",
+      "caption": "API key ကို field ထဲ ဖြည့်လိုက်မယ်",
+      "caption_mode": "word",
+      "transition": "fade",
+      "ui": [
+        { "kind": "node", "label": "OpenAI", "icon": "openai", "x": 10, "y": 38, "w": 16, "h": 14, "status": "running" },
+        { "kind": "panel", "label": "OpenAI", "icon": "openai", "w": 38 }
+      ],
+      "typing": [
+        { "target": "Credential", "value": "sk-proj-xxxxxxxxxxxx", "at": 1, "speed": 16 },
+        { "target": "Model", "value": "gpt-4o-mini", "at": 3.5, "speed": 14 }
+      ],
+      "cursor": [
+        { "x": 74, "y": 40, "click": true, "dwell": 0.5 },
+        { "x": 74, "y": 58, "click": true, "dwell": 0.5 }
+      ],
+      "camera": [
+        { "at": 0, "zoom": 1.1, "x": 74, "y": 45 },
+        { "at": 4, "zoom": 1.1, "x": 74, "y": 55 }
+      ],
+      "grade": { "vignette": 0.25 }
+    },
+    {
+      "start": 16, "end": 20,
+      "type": "outro",
+      "caption": "ဒါဆို workflow အလုပ်လုပ်ပြီ",
+      "caption_mode": "word",
+      "transition": "fade",
+      "kinetic": ["Done! 🎉", "Subscribe လုပ်ထားနော်"],
+      "icons": [
+        { "slug": "gsheets", "label": "Success", "x": 50, "y": 38, "color": "linear-gradient(135deg,#12c47a,#0a8)" }
+      ],
+      "grade": { "vignette": 0.35 }
+    }
+  ]
+}
