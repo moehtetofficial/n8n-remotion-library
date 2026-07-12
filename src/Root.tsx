@@ -1,1 +1,1 @@
-export { RemotionRoot } from "./index";
+export { RemotionRoot } from "./RemotionRoot";
