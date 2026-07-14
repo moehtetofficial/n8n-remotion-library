@@ -4,6 +4,7 @@ import N8nDataPacketFlow from "./N8nDataPacketFlow";
 import N8nCodeEditor from "./N8nCodeEditor";
 import StepFlowDiagram from "./StepFlowDiagram";
 import N8nInterfaceTour from "./N8nInterfaceTour";
+import N8nCredentialsMenu from "./N8nCredentialsMenu";
 
 export const GENERATED: Record<string, any> = {
   "n8n_workflow_execution": N8nWorkflowExecution,
@@ -11,4 +12,5 @@ export const GENERATED: Record<string, any> = {
   "n8n_code_editor": N8nCodeEditor,
   "step_flow_diagram": StepFlowDiagram,
   "n8n_interface_tour": N8nInterfaceTour,
+  "n8n_credentials_menu": N8nCredentialsMenu,
 };
