@@ -1,0 +1,14 @@
+{
+  "_meta": {
+    "version": 2,
+    "updated": "2026-07-14T00:00:00.000Z",
+    "count": 4,
+    "note": "type=json -> legacy descriptor in Gist components-index.json; type=tsx -> file in this folder"
+  },
+  "components": {
+    "n8n_homepage": { "type": "json", "hint": "n8n.io homepage with 'Get Started' button", "mockup": "browser" },
+    "n8n_signup_page": { "type": "json", "hint": "n8n signup page with email input", "mockup": "browser" },
+    "basic_n8n_workflow": { "type": "json", "hint": "Basic n8n canvas with connected nodes for a workflow.", "mockup": "browser" },
+    "n8n_interface_overview": { "type": "json", "hint": "General N8N workflow canvas overview with sidebar and properties panel.", "mockup": "browser" }
+  }
+}
