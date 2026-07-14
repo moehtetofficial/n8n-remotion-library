@@ -1,19 +1,66 @@
 {
   "_meta": {
     "version": 2,
-    "updated": "2026-07-14T00:00:00.000Z",
-    "count": 9,
+    "updated": "2026-07-14T08:26:33.478Z",
+    "count": 10,
     "note": "type=json -> legacy descriptor in Gist components-index.json; type=tsx -> file in this folder"
   },
   "components": {
-    "n8n_homepage": { "type": "json", "hint": "n8n.io homepage with 'Get Started' button", "mockup": "browser" },
-    "n8n_signup_page": { "type": "json", "hint": "n8n signup page with email input", "mockup": "browser" },
-    "basic_n8n_workflow": { "type": "json", "hint": "Basic n8n canvas with connected nodes for a workflow.", "mockup": "browser" },
-    "n8n_interface_overview": { "type": "json", "hint": "General N8N workflow canvas overview with sidebar and properties panel.", "mockup": "browser" },
-    "n8n_workflow_execution": { "type": "tsx", "hint": "Pixel-faithful real n8n editor (light theme) running a workflow: nodes activate sequentially with spinner, green check badges, connections turn green with '1 item' labels and moving data dots. Configurable via scene.nodes [{label, icon: bolt|gear|globe|mail|db|brain|code|sheet, trigger, color}], scene.workflow_title, scene.item_label. USE for any 'workflow executes / run the workflow' narration.", "file": "N8nWorkflowExecution.tsx", "importName": "N8nWorkflowExecution" },
-    "n8n_data_packet_flow": { "type": "tsx", "hint": "Teaches how external data enters n8n: external app window fires POST, a JSON payload card shrinks into a packet that travels into the Webhook trigger node, through processing, to a destination node. Configurable via scene.source_label, scene.payload (JSON string), scene.dest_label, scene.dest_icon. USE for webhook / API / data-flow explanations.", "file": "N8nDataPacketFlow.tsx", "importName": "N8nDataPacketFlow" },
-    "n8n_code_editor": { "type": "tsx", "hint": "Real n8n Code node NDV modal: INPUT panel, JavaScript editor with frame-driven typing + syntax colors, 'Test step' click, OUTPUT panel populates. Configurable via scene.node_name, scene.code, scene.input_json, scene.output_json. USE for Code node / expression / JavaScript lessons.", "file": "N8nCodeEditor.tsx", "importName": "N8nCodeEditor" },
-    "step_flow_diagram": { "type": "tsx", "hint": "Premium concept-scene diagram: 3-5 numbered step cards revealed progressively with drawn arrow connectors and a moving focus glow. Burmese font supported. Configurable via scene.heading, scene.steps [{title, desc}]. USE for process overview / architecture / summary scenes.", "file": "StepFlowDiagram.tsx", "importName": "StepFlowDiagram" },
-    "n8n_interface_tour": { "type": "tsx", "hint": "Full real n8n editor UI (dark sidebar with menu, header with Active toggle + Save, canvas with nodes, add-node button, zoom controls) with cinematic camera that tours areas and highlights each with a focus ring. Configurable via scene.workflow_title, scene.tour array of overview|sidebar|canvas|header|addnode. USE for 'introducing the n8n interface' scenes.", "file": "N8nInterfaceTour.tsx", "importName": "N8nInterfaceTour" }
+    "n8n_homepage": {
+      "type": "json",
+      "hint": "n8n.io homepage with 'Get Started' button",
+      "mockup": "browser"
+    },
+    "n8n_signup_page": {
+      "type": "json",
+      "hint": "n8n signup page with email input",
+      "mockup": "browser"
+    },
+    "basic_n8n_workflow": {
+      "type": "json",
+      "hint": "Basic n8n canvas with connected nodes for a workflow.",
+      "mockup": "browser"
+    },
+    "n8n_interface_overview": {
+      "type": "json",
+      "hint": "General N8N workflow canvas overview with sidebar and properties panel.",
+      "mockup": "browser"
+    },
+    "n8n_workflow_execution": {
+      "type": "tsx",
+      "hint": "Pixel-faithful real n8n editor (light theme) running a workflow: nodes activate sequentially with spinner, green check badges, connections turn green with '1 item' labels and moving data dots. Configurable via scene.nodes [{label, icon: bolt|gear|globe|mail|db|brain|code|sheet, trigger, color}], scene.workflow_title, scene.item_label. USE for any 'workflow executes / run the workflow' narration.",
+      "file": "N8nWorkflowExecution.tsx",
+      "importName": "N8nWorkflowExecution"
+    },
+    "n8n_data_packet_flow": {
+      "type": "tsx",
+      "hint": "Teaches how external data enters n8n: external app window fires POST, a JSON payload card shrinks into a packet that travels into the Webhook trigger node, through processing, to a destination node. Configurable via scene.source_label, scene.payload (JSON string), scene.dest_label, scene.dest_icon. USE for webhook / API / data-flow explanations.",
+      "file": "N8nDataPacketFlow.tsx",
+      "importName": "N8nDataPacketFlow"
+    },
+    "n8n_code_editor": {
+      "type": "tsx",
+      "hint": "Real n8n Code node NDV modal: INPUT panel, JavaScript editor with frame-driven typing + syntax colors, 'Test step' click, OUTPUT panel populates. Configurable via scene.node_name, scene.code, scene.input_json, scene.output_json. USE for Code node / expression / JavaScript lessons.",
+      "file": "N8nCodeEditor.tsx",
+      "importName": "N8nCodeEditor"
+    },
+    "step_flow_diagram": {
+      "type": "tsx",
+      "hint": "Premium concept-scene diagram: 3-5 numbered step cards revealed progressively with drawn arrow connectors and a moving focus glow. Burmese font supported. Configurable via scene.heading, scene.steps [{title, desc}]. USE for process overview / architecture / summary scenes.",
+      "file": "StepFlowDiagram.tsx",
+      "importName": "StepFlowDiagram"
+    },
+    "n8n_interface_tour": {
+      "type": "tsx",
+      "hint": "Full real n8n editor UI (dark sidebar with menu, header with Active toggle + Save, canvas with nodes, add-node button, zoom controls) with cinematic camera that tours areas and highlights each with a focus ring. Configurable via scene.workflow_title, scene.tour array of overview|sidebar|canvas|header|addnode. USE for 'introducing the n8n interface' scenes.",
+      "file": "N8nInterfaceTour.tsx",
+      "importName": "N8nInterfaceTour"
+    },
+    "n8n_credentials_menu": {
+      "type": "tsx",
+      "hint": "Simulates navigating to n8n's credentials menu, clicking 'New Credential', and populating input fields for a Google OAuth credential.",
+      "file": "N8nCredentialsMenu.tsx",
+      "importName": "N8nCredentialsMenu"
+    }
   }
 }
