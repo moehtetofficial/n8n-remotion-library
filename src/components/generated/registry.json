@@ -1,8 +1,8 @@
 {
   "_meta": {
     "version": 2,
-    "updated": "2026-07-14T08:26:33.478Z",
-    "count": 10,
+    "updated": "2026-07-14T09:27:24.011Z",
+    "count": 11,
     "note": "type=json -> legacy descriptor in Gist components-index.json; type=tsx -> file in this folder"
   },
   "components": {
@@ -61,6 +61,12 @@
       "hint": "Simulates navigating to n8n's credentials menu, clicking 'New Credential', and populating input fields for a Google OAuth credential.",
       "file": "N8nCredentialsMenu.tsx",
       "importName": "N8nCredentialsMenu"
+    },
+    "n8n_google_secure_connect": {
+      "type": "tsx",
+      "hint": "Animated diagram showing n8n securely connecting to Google Sheets, Gmail, and Google Drive with lock icons.",
+      "file": "N8nGoogleSecureConnect.tsx",
+      "importName": "N8nGoogleSecureConnect"
     }
   }
 }
