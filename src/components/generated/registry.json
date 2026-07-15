@@ -1,8 +1,8 @@
 {
   "_meta": {
     "version": 2,
-    "updated": "2026-07-14T09:27:24.011Z",
-    "count": 11,
+    "updated": "2026-07-15T15:03:24.110950Z",
+    "count": 15,
     "note": "type=json -> legacy descriptor in Gist components-index.json; type=tsx -> file in this folder"
   },
   "components": {
@@ -67,6 +67,30 @@
       "hint": "Animated diagram showing n8n securely connecting to Google Sheets, Gmail, and Google Drive with lock icons.",
       "file": "N8nGoogleSecureConnect.tsx",
       "importName": "N8nGoogleSecureConnect"
+    },
+    "lesson_title_card": {
+      "type": "tsx",
+      "hint": "Lesson title screen: eyebrow kicker + big display title + animated underline sweep + subtitle. Burmese-safe. Configurable via scene.title (required), scene.subtitle, scene.eyebrow, scene.is_burmese (bool->Padauk), scene.accent (hex), scene.align (center|left). USE for lesson openers / section title cards.",
+      "file": "LsnTitleCard.tsx",
+      "importName": "LsnTitleCard"
+    },
+    "lesson_bullet_list": {
+      "type": "tsx",
+      "hint": "Staggered bullet points sliding in one by one. Configurable via scene.items (array of string OR {text, sub}) [required], scene.heading, scene.marker (dot|number|check), scene.is_burmese (bool->Padauk), scene.accent (hex). USE for concept explanations / step lists / key points.",
+      "file": "LsnBulletList.tsx",
+      "importName": "LsnBulletList"
+    },
+    "lesson_code_block": {
+      "type": "tsx",
+      "hint": "Dark code editor panel with window chrome, line numbers, and character-by-character typewriter reveal + syntax token tinting (keyword/string/comment/number). Configurable via scene.code (required), scene.filename, scene.cps (chars/sec, 0=instant), scene.font_size, scene.line_numbers (bool). USE for showing JSON / JS / any code with a typing animation.",
+      "file": "LsnCodeBlock.tsx",
+      "importName": "LsnCodeBlock"
+    },
+    "lesson_concept_callout": {
+      "type": "tsx",
+      "hint": "Highlight box for one key term: left accent bar + tinted surface + icon + label, pops in with scale. Configurable via scene.text (required), scene.label, scene.variant (info|tip|warning|definition), scene.is_burmese (bool->Padauk). USE for highlighting a key term / important tip / warning / definition.",
+      "file": "LsnConceptCallout.tsx",
+      "importName": "LsnConceptCallout"
     }
   }
 }
