@@ -6,6 +6,10 @@ import StepFlowDiagram from "./StepFlowDiagram";
 import N8nInterfaceTour from "./N8nInterfaceTour";
 import N8nCredentialsMenu from "./N8nCredentialsMenu";
 import N8nGoogleSecureConnect from "./N8nGoogleSecureConnect";
+import LsnTitleCard from "./LsnTitleCard";
+import LsnBulletList from "./LsnBulletList";
+import LsnCodeBlock from "./LsnCodeBlock";
+import LsnConceptCallout from "./LsnConceptCallout";
 
 export const GENERATED: Record<string, any> = {
   "n8n_workflow_execution": N8nWorkflowExecution,
@@ -15,4 +19,8 @@ export const GENERATED: Record<string, any> = {
   "n8n_interface_tour": N8nInterfaceTour,
   "n8n_credentials_menu": N8nCredentialsMenu,
   "n8n_google_secure_connect": N8nGoogleSecureConnect,
+  "lesson_title_card": LsnTitleCard,
+  "lesson_bullet_list": LsnBulletList,
+  "lesson_code_block": LsnCodeBlock,
+  "lesson_concept_callout": LsnConceptCallout,
 };
