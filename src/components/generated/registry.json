@@ -1,31 +1,11 @@
 {
   "_meta": {
     "version": 2,
-    "updated": "2026-07-15T15:03:24.110950Z",
-    "count": 15,
-    "note": "type=json -> legacy descriptor in Gist components-index.json; type=tsx -> file in this folder"
+    "updated": "2026-07-22T10:26:13.700Z",
+    "count": 11,
+    "note": "type=tsx -> file in this folder. Legacy type=json descriptors removed 2026-07-22."
   },
   "components": {
-    "n8n_homepage": {
-      "type": "json",
-      "hint": "n8n.io homepage with 'Get Started' button",
-      "mockup": "browser"
-    },
-    "n8n_signup_page": {
-      "type": "json",
-      "hint": "n8n signup page with email input",
-      "mockup": "browser"
-    },
-    "basic_n8n_workflow": {
-      "type": "json",
-      "hint": "Basic n8n canvas with connected nodes for a workflow.",
-      "mockup": "browser"
-    },
-    "n8n_interface_overview": {
-      "type": "json",
-      "hint": "General N8N workflow canvas overview with sidebar and properties panel.",
-      "mockup": "browser"
-    },
     "n8n_workflow_execution": {
       "type": "tsx",
       "hint": "Pixel-faithful real n8n editor (light theme) running a workflow: nodes activate sequentially with spinner, green check badges, connections turn green with '1 item' labels and moving data dots. Configurable via scene.nodes [{label, icon: bolt|gear|globe|mail|db|brain|code|sheet, trigger, color}], scene.workflow_title, scene.item_label. USE for any 'workflow executes / run the workflow' narration.",
