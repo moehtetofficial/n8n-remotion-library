@@ -1,6 +1,7 @@
 import React from "react";
-import { Composition, getInputProps } from "remotion";
+import { Composition } from "remotion";
 import { Lesson } from "../compositions/Lesson";
+import { V2Lesson } from "../compositions/V2Lesson";
 import sceneScript from "./scene-script.json";
 
 const FPS = 30;
@@ -16,13 +17,19 @@ export const RemotionRoot: React.FC = () => {
   const durationInFrames = Math.max(1, Math.round(seconds * FPS));
 
   return (
-    <Composition
-      id="Lesson"
-      component={Lesson}
-      durationInFrames={durationInFrames}
-      fps={FPS}
-      width={1920}
-      height={1080}
-    />
+    <>
+      {/* Legacy path — driven by src/scene-script.json (Gist renderer). */}
+      <Composition
+        id="Lesson"
+        component={Lesson}
+        durationInFrames={durationInFrames}
+        fps={FPS}
+        width={1920}
+        height={1080}
+      />
+
+      {/* V2 path — driven by src/kit/scene-ir.json. Independent of the above. */}
+      <V2Lesson />
+    </>
   );
 };
