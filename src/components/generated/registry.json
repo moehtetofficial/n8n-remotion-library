@@ -1,8 +1,8 @@
 {
   "_meta": {
     "version": 2,
-    "updated": "2026-07-22T10:26:13.700Z",
-    "count": 11,
+    "updated": "2026-07-22T10:30:50.720Z",
+    "count": 12,
     "note": "type=tsx -> file in this folder. Legacy type=json descriptors removed 2026-07-22."
   },
   "components": {
@@ -71,6 +71,12 @@
       "hint": "Highlight box for one key term: left accent bar + tinted surface + icon + label, pops in with scale. Configurable via scene.text (required), scene.label, scene.variant (info|tip|warning|definition), scene.is_burmese (bool->Padauk). USE for highlighting a key term / important tip / warning / definition.",
       "file": "LsnConceptCallout.tsx",
       "importName": "LsnConceptCallout"
+    },
+    "n8n_node_canvas": {
+      "type": "tsx",
+      "hint": "n8n workflow node canvas nodes webhook set if http request code trigger dark editor pipeline handle execute",
+      "file": "N8nNode.tsx",
+      "importName": "N8nNode"
     }
   }
 }
