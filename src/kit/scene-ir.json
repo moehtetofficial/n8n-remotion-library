@@ -1,0 +1,102 @@
+{
+  "meta": {
+    "lessonId": "e2e-test-webhook",
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "totalFrames": 450,
+    "dark": true
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "pattern": "TitleCard",
+      "startFrame": 0,
+      "endFrame": 90,
+      "data": {
+        "title": "n8n Webhook",
+        "subtitle": "အပြင်ကနေ workflow ကို စတင်ခေါ်တဲ့နည်း"
+      }
+    },
+    {
+      "id": "s2",
+      "pattern": "WorkflowCanvas",
+      "startFrame": 90,
+      "endFrame": 240,
+      "data": {
+        "zoom": 1.7,
+        "animate": true,
+        "workflow": {
+          "nodes": [
+            {
+              "name": "Webhook",
+              "type": "n8n-nodes-base.webhook",
+              "position": [0, 0]
+            },
+            {
+              "name": "Edit Fields",
+              "type": "n8n-nodes-base.set",
+              "position": [224, 0]
+            }
+          ],
+          "connections": {
+            "Webhook": {
+              "main": [[{ "node": "Edit Fields", "type": "main", "index": 0 }]]
+            }
+          }
+        },
+        "subtitles": {
+          "Webhook": "POST /my-webhook",
+          "Edit Fields": "manual mapping"
+        }
+      }
+    },
+    {
+      "id": "s3",
+      "pattern": "ScreenDemo",
+      "startFrame": 240,
+      "endFrame": 450,
+      "data": {
+        "focus": "Webhook",
+        "zoom": 1.6,
+        "typeFieldIndex": 1,
+        "workflow": {
+          "nodes": [
+            {
+              "name": "Webhook",
+              "type": "n8n-nodes-base.webhook",
+              "position": [0, 0]
+            },
+            {
+              "name": "Edit Fields",
+              "type": "n8n-nodes-base.set",
+              "position": [224, 0]
+            }
+          ],
+          "connections": {
+            "Webhook": {
+              "main": [[{ "node": "Edit Fields", "type": "main", "index": 0 }]]
+            }
+          }
+        },
+        "fields": [
+          { "label": "HTTP Method", "value": "POST", "select": true },
+          { "label": "Path", "value": "my-webhook" },
+          { "label": "Respond", "value": "Immediately", "select": true }
+        ]
+      }
+    }
+  ],
+  "captions": [
+    {
+      "text": "Webhook ဆိုတာ n8n workflow ကို အပြင်ကနေ စတင်ခေါ်ပေးတဲ့ trigger node ပါ။",
+      "startFrame": 95,
+      "endFrame": 235
+    },
+    {
+      "text": "Path မှာ URL လမ်းကြောင်းကို သတ်မှတ်ပေးရပါမယ်။",
+      "startFrame": 330,
+      "endFrame": 445
+    }
+  ]
+}
