@@ -41,6 +41,9 @@ export function moveDuration(dist: number): number {
 /**
  * Build a frame-accurate action list from a sequence of targets.
  * Each `click` automatically gets a preceding move + hover dwell.
+ *
+ * `atFrame` on a step is the frame the MOVE begins. To land a click on
+ * an exact frame F, pass atFrame = F - hoverBeforeClickF - moveDuration.
  */
 export function choreograph(
   start: { x: number; y: number },
@@ -62,7 +65,7 @@ export function choreograph(
       out.push({ type: "click", x: s.x, y: s.y, atFrame: f });
       f += CURSOR_TIMING.clickF;
     }
-    cur = s;
+    cur = { x: s.x, y: s.y };
   }
   return out;
 }
@@ -90,6 +93,48 @@ const Pointer: React.FC<{ pressed: boolean }> = ({ pressed }) => (
   </svg>
 );
 
+/**
+ * Resolve the pointer position at a given frame.
+ *
+ * Walks the full move list start-to-finish, carrying the running
+ * position forward. The previous implementation interpolated from
+ * whatever `pos` happened to hold and then `break`ed out of the loop,
+ * so any move that began before an earlier one had visually finished
+ * started from the wrong origin — the pointer jumped. Tracking an
+ * explicit `from` per move fixes that and makes the walk order-safe.
+ */
+function positionAt(
+  frame: number,
+  moves: CursorAction[],
+  start: { x: number; y: number },
+): { x: number; y: number } {
+  let pos = start;
+  for (const m of moves) {
+    const durF = m.durF ?? CURSOR_TIMING.moveMinF;
+    const from = pos;
+    if (frame >= m.atFrame + durF) {
+      // move fully complete — snap and continue to the next one
+      pos = { x: m.x, y: m.y };
+      continue;
+    }
+    if (frame <= m.atFrame) {
+      // move hasn't started; everything after it hasn't either
+      return from;
+    }
+    const t = interpolate(frame, [m.atFrame, m.atFrame + durF], [0, 1], {
+      // decelerate into the target — this is what reads as "human"
+      easing: Easing.bezier(0.33, 0, 0.15, 1),
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+    });
+    return {
+      x: from.x + (m.x - from.x) * t,
+      y: from.y + (m.y - from.y) * t,
+    };
+  }
+  return pos;
+}
+
 export const Cursor: React.FC<{
   actions: CursorAction[];
   /** where the cursor sits before the first action */
@@ -97,37 +142,18 @@ export const Cursor: React.FC<{
 }> = ({ actions, start = { x: 0, y: 0 } }) => {
   const frame = useCurrentFrame();
 
-  const moves = actions.filter((a) => a.type === "move");
+  // sort defensively: a caller may hand back actions out of order
+  const moves = actions
+    .filter((a) => a.type === "move")
+    .sort((a, b) => a.atFrame - b.atFrame);
   const clicks = actions.filter((a) => a.type === "click");
 
-  // current position: walk the move list
-  let pos = start;
-  for (const m of moves) {
-    const durF = m.durF ?? CURSOR_TIMING.moveMinF;
-    if (frame >= m.atFrame + durF) {
-      pos = { x: m.x, y: m.y };
-    } else if (frame >= m.atFrame) {
-      const t = interpolate(frame, [m.atFrame, m.atFrame + durF], [0, 1], {
-        // decelerate into the target — this is what reads as "human"
-        easing: Easing.bezier(0.33, 0, 0.15, 1),
-        extrapolateLeft: "clamp",
-        extrapolateRight: "clamp",
-      });
-      pos = {
-        x: pos.x + (m.x - pos.x) * t,
-        y: pos.y + (m.y - pos.y) * t,
-      };
-      break;
-    } else {
-      break;
-    }
-  }
+  const pos = positionAt(frame, moves, start);
 
   const active = clicks.find(
     (c) => frame >= c.atFrame && frame < c.atFrame + CURSOR_TIMING.clickF,
   );
-  const pressed =
-    !!active && frame < (active?.atFrame ?? 0) + 4;
+  const pressed = !!active && frame < active.atFrame + 4;
 
   return (
     <div

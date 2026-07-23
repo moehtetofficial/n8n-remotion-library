@@ -9,6 +9,7 @@ import {
 } from "remotion";
 import { WorkflowCanvas, N8nWorkflow } from "./WorkflowCanvas";
 import { ScreenDemo } from "./ScreenDemo";
+import { Act1, Act1Beat } from "./Act1";
 import { CANVAS_DARK, TEXT_DARK, FONT } from "./tokens";
 import { ensureBurmeseFont } from "./fonts";
 
@@ -21,7 +22,8 @@ import { ensureBurmeseFont } from "./fonts";
 export type ScenePattern =
   | "TitleCard"
   | "WorkflowCanvas"
-  | "ScreenDemo";
+  | "ScreenDemo"
+  | "Act1";
 
 export interface SceneIRScene {
   id: string;
@@ -123,6 +125,26 @@ const Caption: React.FC<{ text: string; dark?: boolean }> = ({
   </div>
 );
 
+/** Fallback when a scene's pattern is unknown or its data is malformed. */
+const UnknownPattern: React.FC<{ id: string; pattern: string; dark: boolean }> = ({
+  id,
+  pattern,
+  dark,
+}) => (
+  <AbsoluteFill
+    style={{
+      background: dark ? CANVAS_DARK.bg : "#F5F5F5",
+      alignItems: "center",
+      justifyContent: "center",
+      fontFamily: FONT.mono,
+      fontSize: 28,
+      color: "#E7000B",
+    }}
+  >
+    {`unrenderable scene "${id}" (pattern: ${pattern})`}
+  </AbsoluteFill>
+);
+
 /** Dispatch one IR scene to its pattern component. */
 const RenderScene: React.FC<{ scene: SceneIRScene; dark: boolean }> = ({
   scene,
@@ -131,27 +153,56 @@ const RenderScene: React.FC<{ scene: SceneIRScene; dark: boolean }> = ({
   switch (scene.pattern) {
     case "TitleCard": {
       const d = scene.data as { title: string; subtitle?: string };
+      if (!d?.title) break;
       return <TitleCard title={d.title} subtitle={d.subtitle} dark={dark} />;
     }
-    case "WorkflowCanvas":
+    case "WorkflowCanvas": {
+      const d = scene.data as {
+        workflow?: N8nWorkflow;
+        zoom?: number;
+        animate?: boolean;
+        subtitles?: Record<string, string>;
+      };
+      if (!d?.workflow?.nodes?.length) break;
       return (
         <WorkflowCanvas
-          workflow={(scene.data as { workflow: N8nWorkflow }).workflow}
-          zoom={(scene.data as { zoom?: number }).zoom ?? 1.6}
-          animate={(scene.data as { animate?: boolean }).animate ?? true}
-          subtitles={
-            (scene.data as { subtitles?: Record<string, string> }).subtitles
-          }
+          workflow={d.workflow}
+          zoom={d.zoom ?? 1.6}
+          animate={d.animate ?? true}
+          subtitles={d.subtitles}
           dark={dark}
         />
       );
+    }
     case "ScreenDemo": {
       const d = scene.data as unknown as React.ComponentProps<typeof ScreenDemo>;
+      if (!d?.workflow?.nodes?.length || !d?.focus) break;
       return <ScreenDemo {...d} dark={dark} />;
     }
-    default:
-      return null;
+    case "Act1": {
+      const d = scene.data as unknown as {
+        workflow?: N8nWorkflow;
+        beats?: Act1Beat[];
+        runAtFrame?: number;
+        runStepF?: number;
+        zoom?: number;
+        cursor?: boolean;
+      };
+      if (!d?.workflow?.nodes?.length || !d?.beats?.length) break;
+      return (
+        <Act1
+          workflow={d.workflow}
+          beats={d.beats}
+          runAtFrame={d.runAtFrame}
+          runStepF={d.runStepF}
+          zoom={d.zoom}
+          cursor={d.cursor}
+          dark={dark}
+        />
+      );
+    }
   }
+  return <UnknownPattern id={scene.id} pattern={scene.pattern} dark={dark} />;
 };
 
 export const IRComposition: React.FC<{ ir: SceneIR }> = ({ ir }) => {
@@ -159,9 +210,7 @@ export const IRComposition: React.FC<{ ir: SceneIR }> = ({ ir }) => {
   const dark = ir.meta.dark ?? true;
   return (
     <AbsoluteFill style={{ background: dark ? CANVAS_DARK.bg : "#F5F5F5" }}>
-      {ir.meta.audioFile && (
-        <Audio src={staticFile(ir.meta.audioFile)} />
-      )}
+      {ir.meta.audioFile && <Audio src={staticFile(ir.meta.audioFile)} />}
 
       {ir.scenes.map((s) => (
         <Sequence
